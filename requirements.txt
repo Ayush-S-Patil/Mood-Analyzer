@@ -6,3 +6,4 @@ tf-keras
 numpy
 pillow
 python-multipart
+opencv-python-headless

@@ -6,13 +6,12 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 from deepface import DeepFace
 
-# ✅ Preload the emotion model once at startup
-emotion_model = DeepFace.build_model("Emotion")
-
 def detect_mood(image_path: str):
+    """
+    Detects the dominant emotion in the image at `image_path`.
+    Uses DeepFace analyze without preloading models (slower, compatible with older versions).
+    """
     try:
-        # Use OpenCV backend and enforce_detection=False
-        # Pass the preloaded model directly in analyze function using model_name param
         result = DeepFace.analyze(
             img_path=image_path,
             actions=['emotion'],
@@ -20,6 +19,7 @@ def detect_mood(image_path: str):
             detector_backend='opencv'
         )
 
+        # DeepFace can return a list in some versions
         if isinstance(result, list):
             result = result[0]
 

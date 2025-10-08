@@ -8,7 +8,7 @@ app = FastAPI(title="Mood Detection API")
 
 @app.get("/")
 def home():
-    return {"message": "Upload an image at /predict to detect mood 🎯"}
+    return {"message": "Upload an image at /predict to detect mood"}
 
 @app.post("/predict/")
 async def predict_emotion(file: UploadFile = File(...)):
